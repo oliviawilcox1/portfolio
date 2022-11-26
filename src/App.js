@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import './index.css';
+import React, {Fragment } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { WavyContainer } from 'react-wavy-transitions';
+
+import Home from "./components/Home"
+import Header from "./components/Navbar"
+import Contact from "./components/Contact"
+import { Main } from './components/Main';
+import Project from './components/Project';
+import { Footer } from './components/Footer';
+import { Message } from './components/Message';
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <WavyContainer />
+      <Header/>
+      <Routes>
+        <Route 
+          path='/' 
+          element={<>  <Main/> <Home/></>}
+        />
+        <Route path='about' element={ <Contact />}/>
+        <Route path='projects' element={<Project />}/> 
+        <Route path='contacts' element={ <Message />}/>
+      </Routes>
+      <Footer/>
+    </BrowserRouter>
+    
   );
 }
-
 export default App;
