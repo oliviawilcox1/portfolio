@@ -1,10 +1,6 @@
 import React from 'react'
 
 const Contact = () => {
-
-document.body.style = '#1A1A1D';
-// document.body.style = 'background: #9a3b61';
-
    return (
       <>
       <div className='Aboutme' >

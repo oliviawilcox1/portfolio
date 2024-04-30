@@ -2,7 +2,7 @@ import React from "react"
 
 
 export const Message = () => {
-    document.body.style = 'background: #1A1A1D;';
+    // document.body.style = 'background: #1A1A1D;';
     return (
 <section className="lhhpGw fZhawX scrolled" data-section="cinq" tabindex="-1" aria-hidden="false">
     <div className="responsivemessage">

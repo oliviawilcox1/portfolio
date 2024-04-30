@@ -1,18 +1,13 @@
 import './index.css';
-import React, {Fragment } from 'react'
+import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { WavyContainer } from 'react-wavy-transitions';
-
-import Home from "./components/Home"
-import Header from "./components/Navbar"
-import Contact from "./components/Contact"
-import { Main } from './components/Main';
-import Project from './components/Project';
-import { Footer } from './components/Footer';
-import { Message } from './components/Message';
-
-
-
+import Home from "./pages/Home"
+import Header from "./layout/header/Header"
+import Contact from "./pages/Contact"
+import { Layout } from './layout/Layout';
+import { Footer } from './layout/Footer';
+import { Message } from './pages/Message';
 
 function App() {
   return (
@@ -22,11 +17,10 @@ function App() {
       <Routes>
         <Route 
           path='/' 
-          element={<>  <Main/> <Home/></>}
+          element={<>  <Layout/> <Home/></>}
         />
-        <Route path='about' element={ <Contact />}/>
-        <Route path='projects' element={<Project />}/> 
-        <Route path='contacts' element={ <Message />}/>
+        <Route path='experience' element={ <Contact />}/>
+        <Route path='contact' element={ <Message />}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

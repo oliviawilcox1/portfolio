@@ -3,7 +3,7 @@ import { WavyLink } from 'react-wavy-transitions'
 
 
 const Home = () => {
-document.body.style = "#1A1A1D"
+// document.body.style = "#1A1A1D"
    return (
     <>
         <div className='homecontainer'>
@@ -23,7 +23,7 @@ document.body.style = "#1A1A1D"
                 </div>
             </div>
             <div className='image'>
-                <img src={require('../image.jpg')} alt ="Portfolio Photo"/>
+                <img alt ="Portfolio Photo"/>
                 {/* <img src="./image.jpg" alt ="Portfolio Photo"/> */}
             </div>
         </div>

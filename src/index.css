@@ -23,10 +23,6 @@ code {
     monospace;
 }
 
-div{
-  /* overflow: scroll; */
-}
-
 img{
   border-radius: 50%;
   border: 3px #4E4E50 solid; 
@@ -56,7 +52,7 @@ label {
   margin-top: 1em;
 }
 
-a{
+a {
   padding: .5em;
   margin: 0;
   text-decoration: none;
@@ -243,9 +239,9 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: "row";
   width: 100%;
   font-size: .85rem;
-  /* margin: 1em; */
   padding: 14px 0 0 0;
   margin-top: 10px;
   font-weight: 300;
