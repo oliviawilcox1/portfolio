@@ -1,22 +1,22 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import { GitHub, LinkedIn } from '@mui/icons-material';
-import AdbIcon from '@mui/icons-material/Adb';
+import { 
+    Slide, AppBar, Box, Toolbar, Typography,
+    Menu, Button, MenuItem, useScrollTrigger, Stack
+} from '@mui/material';
+import  MenuIcon  from '@mui/icons-material/Menu'
+
 import { WavyLink } from 'react-wavy-transitions';
 
 const pages = [
-    { link: 'experience', color: "#950740", label: "Experience" }, 
-    { link: 'contact', color: "#6F2232", label: "Contact" }
+    { link: 'portfolio/about', color: "#950740", label: "About" }, 
+    { link: 'portfolio/experience', color: "#950740", label: "Experience" }, 
+    { link: 'portfolio/projects', color: "#950740", label: "Projects" }, 
+    { link: 'portfolio/contact', color: "#6F2232", label: "Contact" }
+];
+
+const links = [
+    { link: "https://github.com/oliviawilcox1",  label: "LinkedIn" }, 
+    { link: "https://www.linkedin.com/in/oliviawilcox007/", label: "GitHub" }
 ];
 
 function Header() {
@@ -30,89 +30,62 @@ function Header() {
     setAnchorElNav(null);
   };
 
+    function HideOnScroll(props) {
+        const { children, window } = props;
+
+        const trigger = useScrollTrigger({
+            target: window ? window() : undefined,
+        });
+        
+        return (
+            <Slide appear={false} direction="down" in={!trigger}>
+            {children}
+            </Slide>
+        );
+    }
 
   return (
-    <Container maxWidth="xl">
-        <header>
-    <div className='navbar'>
-        <div className='links'>
-        <WavyLink to="/about" color="#950740"> 
-                EXPERIENCE
-            </WavyLink>
-            <WavyLink to="/contacts" color="#6F2232"> 
-                CONTACT ME
-            </WavyLink>
-        </div>
-        <div className='logo'>
-            <WavyLink to="/" color="#1A1A1D"><h4>OLIVIA WILCOX</h4></WavyLink> 
-        </div>
-        <div className='links'>
-        <a target="_blank" rel="noopener" class="contact__link font-medium" href="https://github.com/oliviawilcox1" aria-label="github">
-            <img className="github" /> 
-        </a>
-        <a target="_blank" rel="noopener" class="contact__link font-medium" href="https://www.linkedin.com/in/oliviawilcox007/" aria-label="linkedin">
-            <img className="linkedIn" />
-          </a> 
-        </div>
-    </div>
-    </header>
-        <AppBar 
-            position="static" 
-            sx={{  backgroundColor: "#1A1A1D" }}>
-            <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                {pages.map((page) => (
-                    <WavyLink to={`/${page.link}`} color={page.color}>
-                        <Button
-                            key={page.link}
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
-                        >
-                            {page.label}
-                        </Button>
-                </WavyLink>
-                ))}
-            </Box>
-            {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+    <HideOnScroll>
+        <AppBar>
+          <Toolbar disableGutters>
+            {/* Small Screen */}
+            <Stack 
+              sx={{
+                display: { xs: 'flex', md: 'none' }, 
+                flexDirection: "row", 
+                justifyContent: "space-between",
+                width: "100%"
+              }}
+            >
             <Typography
-                variant="h6"
+                variant="h4"
                 noWrap
-                href="/"
+                ml={3}
+                href="/portfolio/home"
                 sx={{
-                    fontWeight: 500,
-                    width: "50%",
-                    fontSize: "1.5rem",
-                    textAlign: "center",
-                    mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                //   fontWeight: 500,
-                letterSpacing: '.3rem',
-                //   color: 'inherit',
-                //   textDecoration: 'none',
+                    flexGrow: 1,
+                    letterSpacing: '.3rem',
+                    cursor: "pointer",
                 }}
             >
                 Olivia Wilcox
             </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                size="large"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-                >
-                    <MenuIcon />
-                </IconButton>
+            <Box mr={2}>
+                <MenuIcon onClick={handleOpenNavMenu}/>
+            </Box>
+      
                 <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'left',
+                    horizontal: 'right',
                 }}
                 keepMounted
                 transformOrigin={{
                     vertical: 'top',
-                    horizontal: 'left',
+                    horizontal: 'right',
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
@@ -129,48 +102,51 @@ function Header() {
                     </MenuItem>
                 ))}
                 </Menu>
-            </Box>
-            {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
-            <Typography
-                variant="h5"
-                noWrap
-                // component="a"
-                href="/"
-                sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-                }}
+
+            </Stack>
+
+            {/* Large Screen */}
+            <Stack 
+              sx={{
+                display: { xs: 'none', md: 'flex' }, 
+                flexDirection: "row", 
+                justifyContent: "space-between",
+                width: "100%"
+              }}
             >
-                Olivia Wilcox
-            </Typography>
+            <Typography
+                variant="h3"
+                href="/portfolio/about"
+                sx={{
+                    display: { xs: 'none', md: 'flex' },
+                    letterSpacing: '.3rem',
+                    cursor: "pointer",
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    ml:4,
+                    fontWeight: 300
+                }}
+                >
+                    Olivia Wilcox 
+                </Typography>
 
-
-            <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open GitHub">
-                <IconButton 
-                    // onClick={handleOpenUserMenu} 
-                    sx={{ p: 0 }}>
-                    <GitHub />
-                </IconButton>
-                </Tooltip>
-
-                <Tooltip title="Open LinkedIn">
-                <IconButton 
-                    // onClick={handleOpenUserMenu} 
-                    sx={{ p: 0 }}>
-                    <LinkedIn/>
-                </IconButton>
-                </Tooltip>
-            </Box>
-            </Toolbar>
+                <Box mr={3}>
+                  {pages.map((page) => (
+                    <WavyLink to={`/${page.link}`} color={page.color}>
+                        <Button
+                            key={page.link}
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            {page.label}
+                        </Button>
+                    </WavyLink>
+                  ))}
+                </Box>
+            </Stack>
+          </Toolbar>
         </AppBar>
-    </Container>
+    </HideOnScroll>
   );
 }
 export default Header;

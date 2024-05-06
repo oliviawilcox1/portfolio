@@ -1,13 +1,21 @@
-import React from "react";
+import { Stack, Typography } from '@mui/material';
 
-export const Footer = () => {
-
+const Footer = () => {
   return (
-    <footer>
-        <div class="footer_right">
-          <p class="large-heading">© Olivia Wilcox 2022	</p>
-          <p class="small-body caps"> Freelance Developer</p>
-        </div>
-      </footer>
-    )
-}
+    <Stack
+    sx={{
+      p: 2,
+      textAlign: 'right',
+    }}
+    >
+      <Typography variant="h6" gutterBottom>
+        © Olivia Wilcox 2024
+      </Typography>
+      <Typography variant="body2"  sx={{ textTransform: 'uppercase' }}>
+        Software Engineer
+      </Typography>
+    </Stack>
+  );
+};
+
+export default Footer;
