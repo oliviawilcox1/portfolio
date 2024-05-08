@@ -5,13 +5,16 @@ import EmailIcon from '@mui/icons-material/Email';
 export default function Overlay() {
 
   const transition = { type: 'spring', duration: 0.8 }
-  const config = {
-    initial: { x: -100, opacity: 0, transition: { ...transition, delay: 0.5 } },
-    animate: { x: 0, opacity: 1, transition: { ...transition, delay: 0 } },
-    exit: { x: -100, opacity: 0, transition: { ...transition, delay: 0 } }
-  }
+
+  const handleGitHubClick = () => {
+    window.open('https://github.com/oliviawilcox1', '_blank');
+  };
+
+  const handleLinkedInClick = () => {
+    window.open('https://www.linkedin.com/in/oliviawilcox007/', '_blank');
+  };
   return (
-    <Stack spacing={2} style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 2 }} mt={2}>
+    <Stack spacing={3} style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 2 }} mt={3} ml={3}>
 
 
             <Typography 
@@ -42,11 +45,10 @@ export default function Overlay() {
             <Stack direction={"row"} spacing={2} 
             // sx={{justifyContent:"right"}}
             >
-               <GitHubIcon sx={{fontSize: "2rem"}}/>
-               <LinkedInIcon sx={{fontSize: "2rem"}}/>
-               <EmailIcon sx={{fontSize: "2rem"}}/>
+               <GitHubIcon fontSize="large" onClick={handleGitHubClick} sx={{cursor: "pointer"}}/>
+               <LinkedInIcon fontSize="large" onClick={handleLinkedInClick} />
+               {/* <EmailIcon fontSize="large"/> */}
             </Stack>
-  
 
     </Stack>
   )

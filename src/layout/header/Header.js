@@ -72,7 +72,7 @@ function Header() {
             </Typography>
 
             <Box mr={2}>
-                <MenuIcon onClick={handleOpenNavMenu}/>
+                <MenuIcon onClick={(e) => handleOpenNavMenu(e)}/>
             </Box>
       
                 <Menu

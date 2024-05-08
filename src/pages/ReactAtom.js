@@ -1,12 +1,16 @@
 import * as THREE from 'three'
 import { useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Trail, Float, Line, Sphere, Stars } from '@react-three/drei'
+import { Trail, Float, Line, Sphere, Stars, useAspect } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 
 export default function App() {
+   
   return (
-    <Canvas style={{ width: '100%', height: '70vh' }}  camera={{ position: [0, 0, 9] }}>
+    <div id="canvas-container">
+  
+
+    <Canvas  camera={{ position: [0, 0, 9] }} >
       <color attach="background"  args={[2/255, 2/255, 2/255]} />
       <Float speed={4} rotationIntensity={1} floatIntensity={2}>
         <Atom />
@@ -17,6 +21,7 @@ export default function App() {
       </EffectComposer>
       
     </Canvas>
+    </div>
   )
 }
 
@@ -39,6 +44,7 @@ function Atom(props) {
 
 function Electron({ radius = 2.75, speed = 6, ...props }) {
   const ref = useRef()
+    console.log(ref)
   useFrame((state) => {
     const t = state.clock.getElapsedTime() * speed
     ref.current.position.set(Math.sin(t) * radius, (Math.cos(t) * radius * Math.atan(t)) / Math.PI / 1.25, 0)
@@ -46,7 +52,7 @@ function Electron({ radius = 2.75, speed = 6, ...props }) {
   return (
     <group {...props}>
       <Trail local width={5} length={6} color={new THREE.Color(2, 1, 10)} attenuation={(t) => t * t}>
-        <mesh ref={ref}>
+        <mesh ref={ref} >
           <sphereGeometry args={[0.25]} />
           <meshBasicMaterial color={[10, 1, 10]} toneMapped={false} />
         </mesh>

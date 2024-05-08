@@ -37,8 +37,8 @@ export default function Layout({
         paddingBottom: theme.spacing(10),
         [theme.breakpoints.up("lg")]: {
           paddingTop: desktop,
-          paddingLeft: theme.spacing(2),
-          paddingRight: theme.spacing(2),
+          // paddingLeft: theme.spacing(2),
+          // paddingRight: theme.spacing(2),
         },
       })),
     [mobile, desktop]
